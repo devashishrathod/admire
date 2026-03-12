@@ -6,28 +6,32 @@ const {
   create,
   getAll,
   getOne,
-  // update,
+  update,
   deleteProduct,
+  addBanner,
+  replaceBanner,
+  removeBanner,
   addProductLocations,
   removeProductLocations,
-  checkProductDelivery,
 } = require("../controllers/products");
 
 router.post("/create", isAdmin, create);
 router.get("/getAll", verifyJwtToken, getAll);
 router.get("/get/:id", verifyJwtToken, getOne);
-// router.put("/update/:id", isAdmin, update);
+router.put("/update/:id", isAdmin, update);
+router.post("/:id/banners/add", isAdmin, addBanner);
+router.put("/:id/banners/replace/:bannerId", isAdmin, replaceBanner);
+router.delete("/:id/banners/remove/:bannerId", isAdmin, removeBanner);
 router.delete("/delete/:id", isAdmin, deleteProduct);
 router.put(
   "/update-product-locations/:productId",
   // isAdmin,
-  addProductLocations
+  addProductLocations,
 );
 router.delete(
   "/remove-product-locations/:productId",
   // isAdmin,
-  removeProductLocations
+  removeProductLocations,
 );
-// router.post("/check-delivery/:productId", verifyJwtToken, checkProductDelivery);
 
 module.exports = router;

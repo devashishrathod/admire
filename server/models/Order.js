@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const {
   userField,
   cartField,
-  ProductField,
+  productField,
   locationField,
 } = require("./validObjectId");
 
 const orderItemSchema = new mongoose.Schema(
   {
-    productId: ProductField,
+    productId: productField,
     quantity: Number,
     price: Number,
     locationId: locationField,

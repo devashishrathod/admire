@@ -12,16 +12,20 @@ exports.getAllProducts = async (query) => {
     categoryId,
     subCategoryId,
     SKU,
-    type,
+    typeId,
     price,
     minPrice,
     maxPrice,
     weightInKg,
     minWeight,
     maxWeight,
+    volume,
+    minVolume,
+    maxVolume,
     stockQuantity,
     minStock,
     maxStock,
+    isOutOfStock,
     isActive,
     fromDate,
     toDate,
@@ -34,14 +38,14 @@ exports.getAllProducts = async (query) => {
   if (typeof isActive !== "undefined") {
     match.isActive = isActive === "true" || isActive === true;
   }
-  if (type) {
-    type = type?.toLowerCase();
-    match.type = type;
+  if (typeof isOutOfStock !== "undefined") {
+    match.isOutOfStock = isOutOfStock === "true" || isOutOfStock === true;
   }
   if (categoryId) match.categoryId = new mongoose.Types.ObjectId(categoryId);
   if (subCategoryId) {
     match.subCategoryId = new mongoose.Types.ObjectId(subCategoryId);
   }
+  if (typeId) match.typeId = new mongoose.Types.ObjectId(typeId);
   if (SKU) {
     SKU = SKU?.toUpperCase();
     match.SKU = SKU;
@@ -77,6 +81,12 @@ exports.getAllProducts = async (query) => {
     if (minWeight) match.weightInKg.$gte = Number(minWeight);
     if (maxWeight) match.weightInKg.$lte = Number(maxWeight);
   }
+  if (volume) match["dimensions.volume"] = volume;
+  else if (minVolume || maxVolume) {
+    match["dimensions.volume"] = {};
+    if (minVolume) match["dimensions.volume"].$gte = Number(minVolume);
+    if (maxVolume) match["dimensions.volume"].$lte = Number(maxVolume);
+  }
   if (stockQuantity) match.stockQuantity = stockQuantity;
   else if (minStock || maxStock) {
     match.stockQuantity = {};
@@ -90,13 +100,16 @@ exports.getAllProducts = async (query) => {
       brand: 1,
       categoryId: 1,
       subCategoryId: 1,
+      typeId: 1,
       generalPrice: 1,
       stockQuantity: 1,
       SKU: 1,
       weightInKg: 1,
       description: 1,
       image: 1,
-      type: 1,
+      banners: 1,
+      isOutOfStock: 1,
+      dimensions: 1,
       isActive: 1,
       createdAt: 1,
     },

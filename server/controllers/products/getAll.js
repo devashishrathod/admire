@@ -8,8 +8,8 @@ const { getAllProducts } = require("../../services/products");
 const { validateGetAllProductsQuery } = require("../../validator/products");
 
 exports.getAll = asyncWrapper(async (req, res) => {
-  const { error } = validateGetAllProductsQuery(req.query);
+  const { error, value } = validateGetAllProductsQuery(req.query);
   if (error) throwError(422, cleanJoiError(error));
-  const result = await getAllProducts(req.query);
-  return sendSuccess(res, 200, "Products fetched successfully", result);
+  const result = await getAllProducts(value);
+  return sendSuccess(res, 200, "Products fetched", result);
 });

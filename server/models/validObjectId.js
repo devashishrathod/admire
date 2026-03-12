@@ -20,7 +20,12 @@ module.exports = Object.freeze({
   categoryField: refField("Category"),
   subCategoryField: refField("SubCategory"),
   locationField: refField("Location"),
-  ProductField: refField("Product"),
+  productField: refField("Product"),
+  productTypeField: refField("ProductType"),
+  bannerField: refField("Banner"),
+  fabricField: refField("Fabric"),
+  fabricTypeField: refField("FabricType"),
+  colorField: refField("Color"),
   cartField: refField("Cart"),
   orderField: refField("Order"),
 
@@ -42,6 +47,16 @@ module.exports = Object.freeze({
       validator: (arr) => Array.isArray(arr) && arr.every(isValidId),
       message: (props) =>
         `One or more Product IDs in ${props.value} are invalid`,
+    },
+  }),
+
+  bannersField: Object.freeze({
+    type: [ObjectId],
+    ref: "Banner",
+    validate: {
+      validator: (arr) => Array.isArray(arr) && arr.every(isValidId),
+      message: (props) =>
+        `One or more Banner IDs in ${props.value} are invalid`,
     },
   }),
 });

@@ -13,6 +13,19 @@ module.exports = {
     OTHER: "other",
   }),
 
+  BANNER_LINKED_TYPES: Object.freeze({
+    PRODUCT: "product",
+    VARIANT: "variant",
+    FABRIC: "fabric",
+    COLOR: "color",
+  }),
+
+  DIMENSION_UNITS: Object.freeze({
+    MM: "mm",
+    CM: "cm",
+    IN: "in",
+  }),
+
   PLATFORMS: Object.freeze({
     WEB: "web",
     ANDROID: "android",
@@ -40,12 +53,6 @@ module.exports = {
     BASIC: "basic",
     PREMIUM: "premium",
     Family: "family",
-  }),
-
-  PRODUCT_TYPES: Object.freeze({
-    GROCERY: "grocery",
-    ELECTRONICS: "electronics",
-    CLOTHING: "clothing",
   }),
 
   DELIVERY_SETTINGS: Object.freeze({

@@ -8,9 +8,10 @@ const { createProduct } = require("../../services/products");
 const { validateCreateProduct } = require("../../validator/products");
 
 exports.create = asyncWrapper(async (req, res) => {
-  const { error } = validateCreateProduct(req.body);
+  const { error, value } = validateCreateProduct(req.body);
   if (error) throwError(422, cleanJoiError(error));
   const image = req.files?.image;
-  const product = await createProduct(req.body, image);
-  return sendSuccess(res, 201, "Product created successfully", product);
+  const banners = req.files?.banners;
+  const product = await createProduct(value, image, banners);
+  return sendSuccess(res, 201, "Product created", product);
 });
