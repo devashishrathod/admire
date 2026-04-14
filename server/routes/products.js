@@ -16,8 +16,8 @@ const {
 } = require("../controllers/products");
 
 router.post("/create", isAdmin, create);
-router.get("/getAll", verifyJwtToken, getAll);
-router.get("/get/:id", verifyJwtToken, getOne);
+router.get("/getAll", getAll);
+router.get("/get/:id", getOne);
 router.put("/update/:id", isAdmin, update);
 router.post("/:id/banners/add", isAdmin, addBanner);
 router.put("/:id/banners/replace/:bannerId", isAdmin, replaceBanner);
