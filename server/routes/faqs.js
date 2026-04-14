@@ -5,8 +5,8 @@ const { isAdmin, verifyJwtToken } = require("../middlewares");
 const { create, getAll, get, update, deleteFAQ } = require("../controllers/faqs");
 
 router.post("/create", isAdmin, create);
-router.get("/getAll", verifyJwtToken, getAll);
-router.get("/get/:id", verifyJwtToken, get);
+router.get("/getAll", getAll);
+router.get("/get/:id", get);
 router.put("/update/:id", isAdmin, update);
 router.delete("/delete/:id", isAdmin, deleteFAQ);
 
