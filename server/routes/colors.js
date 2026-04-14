@@ -14,8 +14,8 @@ const {
 } = require("../controllers/colors");
 
 router.post("/create", isAdmin, create);
-router.get("/getAll", verifyJwtToken, getAll);
-router.get("/get/:id", verifyJwtToken, get);
+router.get("/getAll", getAll);
+router.get("/get/:id", get);
 router.put("/update/:id", isAdmin, update);
 router.post("/:id/banners/add", isAdmin, addBanner);
 router.put("/:id/banners/replace/:bannerId", isAdmin, replaceBanner);
